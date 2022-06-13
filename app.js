@@ -4,6 +4,9 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 
+// all routing will be there from any app/* folder
+const productRouter = require("./app/products/router");
+
 var app = express();
 
 // view engine setup
@@ -15,6 +18,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+
+// implements all routing from any app/* folder
+app.use("/api", productRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
