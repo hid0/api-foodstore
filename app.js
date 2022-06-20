@@ -6,6 +6,7 @@ var logger = require("morgan");
 
 // all routing will be there from any app/* folder
 const productRouter = require("./app/products/router");
+const categoryRouter = require("./app/categories/router");
 
 var app = express();
 
@@ -20,6 +21,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 // implements all routing from any app/* folder
+app.use("/api", categoryRouter);
 app.use("/api", productRouter);
 
 // catch 404 and forward to error handler
